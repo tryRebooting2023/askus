@@ -1,0 +1,9 @@
+*.iml
+.idea
+.DS_Store
+node_modules
+.env
+settings.production.json
+app/.deploy/mup.js
+app/.deploy/settings.json
+settings.json

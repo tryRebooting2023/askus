@@ -1,11 +1,32 @@
 /* Use Open Sans as the default sans serif font. */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700|Source+Code+Pro:300,400,500,700");
 
+.scrollable-col {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
 /* Set up some CSS variables to theme the application. */
 :root {
   --matr-navbar-bg: #ECECEC;
   --matr-navbar-bg-rgb: 236, 236, 236;
 }
+
+/* Light mode styles (default) */
+body {
+  background-color: #efd9d9;
+  color: white;
+  font-family: "monospace", serif;
+  /* Other light mode styles */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #343434;
+  color: white;
+  /* Other dark mode styles */
+}
+
 
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/

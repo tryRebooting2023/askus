@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 const ChatItem = ({ content, role, sources, titles }) => {
   const userBackgroundColor = 'lightblue';
   const assistantBackgroundColor = 'lightgreen';
+
   const containerStyle = {
     backgroundColor: role === 'user' ? userBackgroundColor : assistantBackgroundColor,
+    color: 'white',
     padding: '10px',
     marginBottom: '10px',
     borderRadius: '5px',
+    overflowY: 'auto', // Enable vertical scrolling
+    maxHeight: '100px', // Adjust the maximum height as needed
+    boxShadow: '0px 7px 8px rgba(0, 0, 0, 0.1)',
   };
   function haveSources() {
     return sources !== null;

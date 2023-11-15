@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Source = ({ source }) => (
     <div>
-      {source}
+      <a href={source[0]}>somethin</a>
     </div>
   );
 

@@ -70,12 +70,17 @@ const getEmbeddings = async (messages) => {
   const link2 = `https://www.hawaii.edu/askus/${[file2]}`;
   const link3 = `https://www.hawaii.edu/askus/${file3}`;
   const linkArray = [link1, link2, link3];
-
+  // Get the titles
+  const title1 = searchResults.matches[0].metadata.title.split('.')[0];
+  const title2 = searchResults.matches[1].metadata.title.split('.')[0];
+  const title3 = searchResults.matches[2].metadata.title.split('.')[0];
+  const titleArray = [title1, title2, title3];
   console.log(`Context Retrieved: ${context}`);
 
   return {
     context,
     linkArray,
+    titleArray,
   };
 };
 // Define a global or persistent object to store session data
@@ -88,6 +93,7 @@ Meteor.methods({
     const embeddingResults = await getEmbeddings(userMessage);
     const context = embeddingResults.context;
     const linkArray = embeddingResults.linkArray;
+    const titleArray = embeddingResults.titleArray;
     // Retrieve or initialize the user's session
     const userSession = userSessions[userId] || {
       messages: [],
@@ -120,6 +126,7 @@ Meteor.methods({
     return {
       chatResponse,
       linkArray,
+      titleArray,
     };
   },
 });

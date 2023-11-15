@@ -13,13 +13,29 @@ const ChatItem = ({ content, role, sources, titles }) => {
   function haveSources() {
     return sources !== null;
   }
+
+  const uniqueSources = [...new Set(sources)];
+  const uniqueTitles = [...new Set(titles)];
+
+  const listItems = uniqueSources.map((link, key) => (
+    <li key={key}>
+      <a href={link}>
+        {uniqueTitles.map((title, index) => {
+          if (key === index) {
+            return <div key={index}>{title}</div>;
+          }
+          return null;
+        })}
+      </a>
+    </li>
+  ));
   return (
     <div style={containerStyle}>
       {content}
       {haveSources() && role === 'assistant' && (
-        <ul className="pt-3" key="source-links">
+        <ul className="pt-3">
           Related Article Links:
-          {sources.map((link, key) => <li><a href={link}>{titles.map((title, index) => (key === index ? <div>{title}</div> : ''))}</a></li>)}
+          {listItems}
         </ul>
       )}
     </div>

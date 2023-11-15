@@ -8,7 +8,7 @@ import LoadingSpinner from './LoadingSpinner';
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
   const [chatMessages, setChatMessages] = useState([
-    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?' },
+    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?', sources: null },
   ]);
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -37,7 +37,7 @@ const ITSearch = () => {
         // Add the response from OpenAI to the chatMessages array
         setChatMessages((prevChatMessages) => [
           ...prevChatMessages,
-          { role: 'assistant', content: response.chatResponse },
+          { role: 'assistant', content: response.chatResponse, sources: response.linkArray },
         ]);
       } else {
         console.error(error);
@@ -69,7 +69,7 @@ const ITSearch = () => {
         </Col>
         <Col xs={8} className="d-flex flex-column justify-content-start">
           {chatMessages.map((chat, index) => (
-            <ChatItem content={chat.content} role={chat.role} key={index} />
+            <ChatItem content={chat.content} role={chat.role} sources={chat.sources} key={index} />
           ))}
         </Col>
       </Row>

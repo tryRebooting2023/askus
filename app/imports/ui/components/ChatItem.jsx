@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChatItem = ({ content, role }) => {
+const ChatItem = ({ content, role, sources }) => {
   const userBackgroundColor = 'lightblue';
   const assistantBackgroundColor = 'lightgreen';
 
@@ -15,6 +15,11 @@ const ChatItem = ({ content, role }) => {
   return (
     <div style={containerStyle}>
       {content}
+
+      Related Article Links:
+      {sources[0]}
+      {sources[1]}
+      {sources[2]}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Source from './Source';
 
 const ChatItem = ({ content, role, sources }) => {
   const userBackgroundColor = 'lightblue';
@@ -12,14 +13,18 @@ const ChatItem = ({ content, role, sources }) => {
     borderRadius: '5px',
   };
 
+  function haveSources() {
+    return sources !== null;
+  }
   return (
     <div style={containerStyle}>
       {content}
-
-      Related Article Links:
-      {sources[0]}
-      {sources[1]}
-      {sources[2]}
+      {haveSources() && role === 'assistant' && (
+        <ul className="pt-3" key="source-links">
+          Related Article Links:
+          {sources.map((link) => <li>{link}</li>)}
+        </ul>
+      )}
     </div>
   );
 };
@@ -28,7 +33,7 @@ const ChatItem = ({ content, role, sources }) => {
 ChatItem.propTypes = {
   content: PropTypes.string.isRequired,
   role: PropTypes.oneOf(['user', 'assistant']).isRequired,
-  sources: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sources: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ChatItem;

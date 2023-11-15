@@ -102,7 +102,6 @@ Meteor.methods({
       { role: 'system', content: 'You are a helpful chatbot that can answer questions based on the following articles provided.' },
       { role: 'system', content: 'You can engage in friendly conversation, but your main purpose is to provide information from our knowledge base.' },
       { role: 'system', content: `Base answers on this context: ${context}` },
-      { role: 'system', content: `Include this exact list at the end:\n\n\nRelated Article Links:\n-${linkArray[0]}\n-${linkArray[1]}\n-${linkArray[2]}` },
       { role: 'assistant', content: 'Hello! How can I assist you today?' },
     ];
 
@@ -118,7 +117,6 @@ Meteor.methods({
 
     userSession.messages.push({ role: 'assistant', content: chatResponse });
     userSessions[userId] = userSession; // Update the session
-
     return {
       chatResponse,
       linkArray,

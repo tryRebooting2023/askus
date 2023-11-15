@@ -12,7 +12,9 @@ const pinecone = new Pinecone({
   environment: Meteor.settings.pineconeEnvironment,
 });
 // Initialize OpenAI Embeddings
-const embeddings = new OpenAIEmbeddings();
+const embeddings = new OpenAIEmbeddings({
+  openAIApiKey: Meteor.settings.openaiApiKey,
+});
 // Initialize Pinecone index
 const index = pinecone.index(Meteor.settings.pineconeIndex);
 // Get Pinecone index stats

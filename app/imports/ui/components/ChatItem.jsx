@@ -28,6 +28,7 @@ const ChatItem = ({ content, role, sources }) => {
 ChatItem.propTypes = {
   content: PropTypes.string.isRequired,
   role: PropTypes.oneOf(['user', 'assistant']).isRequired,
+  sources: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ChatItem;

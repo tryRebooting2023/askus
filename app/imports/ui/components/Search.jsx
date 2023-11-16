@@ -17,6 +17,10 @@ const ITSearch = () => {
   };
 
   const handleSendMessage = () => {
+    // If the user did not enter any text, do nothing
+    if (userInput.trim() === '') {
+      return;
+    }
     // Add the user's message to the chatMessages array
     setChatMessages((prevChatMessages) => [
       ...prevChatMessages,
@@ -46,6 +50,14 @@ const ITSearch = () => {
     setUserInput('');
   };
 
+  const handleKeyDown = (e) => {
+    // Check if the pressed key is Enter
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent the default behavior of the enter key (e.g., form submission)
+      handleSendMessage(); // Call your sendMessage function
+    }
+  };
+
   return (
     <Container id="landing-page" fluid className="py-3">
       <Row className="p-1"><h1>Virtual Help Desk</h1></Row>
@@ -58,9 +70,10 @@ const ITSearch = () => {
               aria-describedby="basic-addon2"
               value={userInput}
               onChange={handleUserInput}
+              onKeyDown={handleKeyDown}
             />
             <InputGroup.Text id="btn-group">
-              <Button onClick={handleSendMessage}><Search /></Button>
+              <Button onClick={handleSendMessage} variant="light"><Search /></Button>
             </InputGroup.Text>
           </InputGroup>
           <DarkModeToggle />

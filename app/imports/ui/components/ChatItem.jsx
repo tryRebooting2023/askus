@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ChatItem = ({ content, role, sources, titles }) => {
-  const userBackgroundColor = 'lightblue';
-  const assistantBackgroundColor = 'lightgreen';
+  const userBackgroundColor = 'gray';
+  const assistantBackgroundColor = 'green';
 
   const containerStyle = {
     backgroundColor: role === 'user' ? userBackgroundColor : assistantBackgroundColor,
@@ -27,7 +27,7 @@ const ChatItem = ({ content, role, sources, titles }) => {
       <a href={link}>
         {uniqueTitles.map((title, index) => {
           if (key === index) {
-            return <div key={index}>{title}</div>;
+            return <div key={index} className="reference-link">{title}</div>;
           }
           return null;
         })}

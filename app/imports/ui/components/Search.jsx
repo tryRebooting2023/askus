@@ -9,22 +9,18 @@ import DarkModeToggle from './DarkToggleMode';
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
   const [chatMessages, setChatMessages] = useState([
-    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?' },
+    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?', sources: null, titles: null, isLoading: false },
   ]);
-
-  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
   };
 
   const handleSendMessage = () => {
-    // Set the isProcessing flag to true when starting the chatbot request
-    setIsProcessing(true);
     // Add the user's message to the chatMessages array
     setChatMessages((prevChatMessages) => [
       ...prevChatMessages,
-      { role: 'user', content: userInput },
+      { role: 'user', content: userInput, isLoading: true },
     ]);
     // Get the current user's ID
     let currentUser = Meteor.userId();
@@ -36,15 +32,14 @@ const ITSearch = () => {
     Meteor.call('getChatResponse', currentUser, userInput, (error, response) => {
       if (!error) {
         // Add the response from OpenAI to the chatMessages array
-        setChatMessages((prevChatMessages) => [
-          ...prevChatMessages,
-          { role: 'assistant', content: response.chatResponse },
+        setChatMessages(prevChatMessages => [
+          ...prevChatMessages.slice(0, -1), // All messages except the last one (being rendered)
+          { ...prevChatMessages[prevChatMessages.length - 1], isLoading: false }, // Ensure last message is no longer loading
+          { role: 'assistant', content: response.chatResponse, sources: response.linkArray, titles: response.titleArray, isLoading: false },
         ]);
       } else {
         console.error(error);
       }
-      // Set isProcessing to false to indicate that the request is complete
-      setIsProcessing(false);
     });
 
     // Clear the search bar
@@ -72,15 +67,12 @@ const ITSearch = () => {
         </Col>
         <Col xs={8} className="d-flex flex-column justify-content-start">
           {chatMessages.map((chat, index) => (
-            <ChatItem content={chat.content} role={chat.role} key={index} />
+            chat.isLoading ?
+              <LoadingSpinner key={index} /> :
+              <ChatItem content={chat.content} role={chat.role} sources={chat.sources} titles={chat.titles} key={index} />
           ))}
         </Col>
       </Row>
-      {isProcessing && (
-        <Row className="justify-content-md-center">
-          <LoadingSpinner animation="border" />
-        </Row>
-      )}
     </Container>
   );
 };

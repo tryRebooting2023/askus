@@ -14,7 +14,6 @@
 
 /* Light mode styles (default) */
 body {
-  background-color: #efd9d9;
   color: white;
   font-family: "monospace", serif;
   /* Other light mode styles */
@@ -70,4 +69,9 @@ body {
 footer {
   color: white;
   background-color: #333;
+}
+
+.campus-background {
+  background: url("./images/hawaii-hall.png") no-repeat center center fixed;
+  background-size: cover;
 }

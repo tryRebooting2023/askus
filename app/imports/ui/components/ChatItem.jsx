@@ -51,7 +51,7 @@ const ChatItem = ({ content, role, sources, titles }) => {
         {content}
       </div>
       {haveSources() && role === 'assistant' && (
-        <div style={sourceContainerStyle}>
+        <div style={sourceContainerStyle} className="body.dark-mode">
           <ul className="pt-3">
             Related Article Links:
             {listItems}

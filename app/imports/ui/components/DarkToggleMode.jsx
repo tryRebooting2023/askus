@@ -29,7 +29,6 @@ const DarkModeToggle = () => {
         id="dark-mode-switch"
         checked={darkMode}
         onChange={toggleDarkMode}
-        // Additional styling for your switch
       />
     </div>
   );

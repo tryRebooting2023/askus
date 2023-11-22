@@ -1,4 +1,4 @@
-import { Col, Container, Form, InputGroup, Row, Button, Image } from 'react-bootstrap';
+import { Col, Container, Form, InputGroup, Row, Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
@@ -59,11 +59,17 @@ const ITSearch = () => {
   };
 
   return (
-    <Container id="landing-page" fluid className="py-3">
-      <Row id="centerText" className="align-items-center justify-content-center campus-background m2">
+    <Container id="landing-page" className="container-fluid">
+      <Row id="centerText" className="align-items-center justify-content-center campus-background">
         <Col xs={8} className="text-center">
+          <br />
+          <br />
+          <br />
           <h1>Ask Us</h1>
-          <h5>Ask Us is a knowledge base of frequently asked questions (FAQs) related to information technology.</h5>
+          <h6>A searchable knowledge base of frequently asked questions (FAQs) related to information technology.</h6>
+          <br />
+          <br />
+          <br />
         </Col>
       </Row>
       <Row className="align-middle">

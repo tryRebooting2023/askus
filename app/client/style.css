@@ -26,7 +26,6 @@ body.dark-mode {
   /* Other dark mode styles */
 }
 
-
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
@@ -73,12 +72,16 @@ body {
   background: linear-gradient(90deg, rgba(191,142,12,1) 0%, rgba(255,255,255,1) 50%, rgba(191,142,12,1) 100%);
 }
 
+/*
 footer {
   color: white;
   background-color: #333;
 }
 
+ */
+
 .campus-background {
   background: url("./images/hawaii-hall.png") no-repeat center center fixed;
   background-size: cover;
+  color: white;
 }

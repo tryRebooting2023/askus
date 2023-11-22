@@ -41,6 +41,11 @@ const NavBar = () => {
                   Contact
                 </a>
               </NavDropdown.Item>
+              <NavDropdown.Item id="contact" title="Tutorial">
+                <a href="https://www.hawaii.edu/its/tutorial/" target="_blank" rel="noopener noreferrer" className="menu-link">
+                  Tutorial
+                </a>
+              </NavDropdown.Item>
             </NavDropdown>
             {currentUser === '' ? (
               <NavDropdown id="login-dropdown" title="Login">

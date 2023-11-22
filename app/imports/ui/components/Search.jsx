@@ -76,7 +76,7 @@ const ITSearch = () => {
         <Col xs={4}>
           <InputGroup className="mb-3 search-bar-input-group">
             <Form.Control
-              placeholder="Ask a question"
+              placeholder="Ask a question (Ex: What is DUO?)"
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               value={userInput}

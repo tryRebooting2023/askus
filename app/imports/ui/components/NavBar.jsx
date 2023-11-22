@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
@@ -9,6 +10,9 @@ const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
+  }), []);
+  const { isAdmin } = useTracker(() => ({
+    isAdmin: Roles.userIsInRole(Meteor.userId(), 'admin'),
   }), []);
 
   return (
@@ -42,6 +46,13 @@ const NavBar = () => {
                 </a>
               </NavDropdown.Item>
             </NavDropdown>
+            {isAdmin ? (
+              <NavDropdown title="Admin" id="basic-nav-dropdown" className="menu-dropdown">
+                <NavDropdown.Item id="admin-analytics" as={NavLink} to="/analytics">
+                  Analytics
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : ''}
             {currentUser === '' ? (
               <NavDropdown id="login-dropdown" title="Login">
                 <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to="/signin">

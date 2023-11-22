@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import { OpenAIEmbeddings } from 'langchain/dist/embeddings/openai';
 import { Pinecone } from '@pinecone-database/pinecone';
 import { check } from 'meteor/check';
+import { Articles } from '../imports/api/articles/Articles';
 
 const openai = new OpenAI({
   apiKey: Meteor.settings.openaiApiKey,
@@ -70,7 +71,10 @@ const getEmbeddings = async (messages) => {
   const link2 = `https://www.hawaii.edu/askus/${[file2]}`;
   const link3 = `https://www.hawaii.edu/askus/${file3}`;
   const linkArray = [link1, link2, link3];
-
+  // Update useCount of article
+  Articles.collection.update({ fileName: searchResults.matches[0].metadata.fileName }, { $inc: { useCount: 1 } });
+  console.log(Articles.collection.find({ fileName: searchResults.matches[0].metadata.fileName }).fetch());
+  // Return context and linkArray
   console.log(`Context Retrieved: ${context}`);
 
   return {

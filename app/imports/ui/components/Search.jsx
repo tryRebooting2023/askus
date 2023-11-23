@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import ChatItem from './ChatItem';
 import LoadingSpinner from './LoadingSpinner';
-import DarkModeToggle from './DarkToggleMode';
 
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
@@ -87,7 +86,6 @@ const ITSearch = () => {
               <Button onClick={handleSendMessage} variant="light"><Search /></Button>
             </InputGroup.Text>
           </InputGroup>
-          <DarkModeToggle />
         </Col>
         <Col xs={8} className="d-flex flex-column justify-content-start">
           {chatMessages.map((chat, index) => (

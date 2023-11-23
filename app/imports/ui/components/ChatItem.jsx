@@ -18,7 +18,6 @@ const ChatItem = ({ content, role, sources, titles }) => {
 
   const sourceContainerStyle = {
     backgroundColor: 'transparent',
-    color: 'white',
     padding: '10px',
     marginTop: '10px', // Add some margin between the response and sources
     borderRadius: '5px',
@@ -51,7 +50,7 @@ const ChatItem = ({ content, role, sources, titles }) => {
         {content}
       </div>
       {haveSources() && role === 'assistant' && (
-        <div style={sourceContainerStyle} className="body.dark-mode">
+        <div className="body.dark-sources" style={sourceContainerStyle}>
           <ul className="pt-3">
             Related Article Links:
             {listItems}

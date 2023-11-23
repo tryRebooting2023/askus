@@ -47,11 +47,9 @@ const NavBar = () => {
               </NavDropdown.Item>
             </NavDropdown>
             {isAdmin ? (
-              <NavDropdown title="Admin" id="basic-nav-dropdown" className="menu-dropdown">
-                <NavDropdown.Item id="admin-analytics" as={NavLink} to="/analytics">
-                  Analytics
-                </NavDropdown.Item>
-              </NavDropdown>
+              <NavLink to="/analytics" className="nav-link">
+                Analytics
+              </NavLink>
             ) : ''}
             {currentUser === '' ? (
               <NavDropdown id="login-dropdown" title="Login">

@@ -55,7 +55,7 @@ const Analytics = () => {
             {articleLabels.length > 0 ? (
               <Doughnut data={data} />
             ) : (
-              <h3>No data to display</h3>
+              <h3>Currently no user data</h3>
             )}
           </Col>
         </Col>

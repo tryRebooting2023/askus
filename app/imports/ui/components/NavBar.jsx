@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { BoxArrowRight, List, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
+import DarkToggleMode from './DarkToggleMode';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -22,6 +23,7 @@ const NavBar = () => {
           <Image src="/images/its_logo_uppercase_out.png" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <DarkToggleMode />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="justify-content-end ms-auto">
             <NavDropdown title={<List />} id="basic-nav-dropdown" className="menu-dropdown">
@@ -45,10 +47,8 @@ const NavBar = () => {
                   Contact
                 </a>
               </NavDropdown.Item>
-              <NavDropdown.Item id="contact" title="Tutorial">
-                <a href="https://www.hawaii.edu/its/tutorial/" target="_blank" rel="noopener noreferrer" className="menu-link">
-                  Tutorial
-                </a>
+              <NavDropdown.Item className="menu-link tutorial-link" id="tutorial" title="Tutorial" as={NavLink} to="/tutorial">
+                Tutorial
               </NavDropdown.Item>
             </NavDropdown>
             {isAdmin ? (

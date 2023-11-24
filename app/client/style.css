@@ -16,14 +16,21 @@
 body {
   color: white;
   font-family: "monospace", serif;
-  /* Other light mode styles */
 }
 
 /* Dark mode styles */
 body.dark-mode {
   background-color: #343434;
   color: white;
-  /* Other dark mode styles */
+}
+
+/* Specific override for navbar label in dark mode */
+body.dark-mode .navbar label {
+  color: #363535;
+}
+
+body.dark-mode-sources {
+  color: white;
 }
 
 /* Change bootstrap variable values.
@@ -57,6 +64,10 @@ body {
 }
 .reference-link:hover {
   color: white;
+}
+
+.tutorial-link:hover {
+  color: mediumpurple;
 }
 
 /* Define custom styles */

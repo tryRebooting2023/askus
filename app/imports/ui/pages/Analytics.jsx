@@ -63,9 +63,13 @@ const Analytics = () => {
             <h2>Top Used Articles</h2>
           </Col>
           {articleLabels.slice(0, 3).map((label, index) => (
-            <Card key={index} className="my-2">
+            <Card key={index} className="my-2 p-0">
               <Card.Body>
                 <Card.Title>{label.label}</Card.Title>
+                <Card.Text>
+                  {/* Display the number of times the source was used */}
+                  Used {label.count} time(s).
+                </Card.Text>
                 <Card.Text>
                   {/* Render the link */}
                   <a href={label.link} target="_blank" rel="noopener noreferrer">

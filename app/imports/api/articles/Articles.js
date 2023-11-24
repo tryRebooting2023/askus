@@ -15,6 +15,11 @@ class ArticlesCollection {
       fileName: String,
       title: String,
       content: String,
+      useCount: {
+        type: Number,
+        defaultValue: 0,
+        blackbox: true,
+      },
     });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);

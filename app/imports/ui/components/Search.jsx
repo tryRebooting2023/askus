@@ -1,6 +1,6 @@
 import { Col, Container, Form, InputGroup, Row, Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import ChatItem from './ChatItem';
 import LoadingSpinner from './LoadingSpinner';
@@ -14,6 +14,11 @@ const ITSearch = () => {
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
   };
+  // Call the useEffect hook to set up a listener on the chatMessages array
+  useEffect(() => {
+    // Scroll to the bottom of the page when chatMessages change
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [chatMessages]); // Add chatMessages as a dependency
 
   const handleSendMessage = () => {
     // If the user did not enter any text, do nothing
@@ -40,6 +45,9 @@ const ITSearch = () => {
           { ...prevChatMessages[prevChatMessages.length - 1], isLoading: false }, // Ensure last message is no longer loading
           { role: 'assistant', content: response.chatResponse, sources: response.linkArray, titles: response.titleArray, isLoading: false },
         ]);
+
+        // Scroll to the bottom of the page
+        window.scrollTo(0, document.body.scrollHeight);
       } else {
         console.error(error);
       }

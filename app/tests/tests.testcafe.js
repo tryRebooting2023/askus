@@ -12,7 +12,7 @@ const credentials = { username: 'admin@foo.com', password: 'changeme' };
 const query = 'How can I change my UH account name?';
 const liCount = 1;
 
-fixture('meteor-application-template-react localhost test with default db')
+fixture('its-ask-us localhost test with default db')
   .page('http://localhost:3000');
 
 test('Test that landing page shows up', async (testController) => {

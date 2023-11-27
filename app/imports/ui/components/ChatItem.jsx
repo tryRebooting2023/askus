@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChatItem = ({ content, role, sources, titles }) => {
+const ChatItem = ({ content, role, sources, titles, scores }) => {
   const userBackgroundColor = 'gray';
   const assistantBackgroundColor = 'green';
 
@@ -31,25 +31,26 @@ const ChatItem = ({ content, role, sources, titles }) => {
 
   const uniqueSources = [...new Set(sources)];
   const uniqueTitles = [...new Set(titles)];
-
-  const listItems = uniqueSources.map((link, key) => (
-    <li key={key}>
-      <a href={link}>
-        {uniqueTitles.map((title, index) => {
-          if (key === index) {
-            return <div key={index} className="reference-link">{title}</div>;
-          }
-          return null;
-        })}
-      </a>
-    </li>
-  ));
+  const listItems = uniqueSources.flatMap((link, key) => (
+    uniqueTitles.map((title, index) => {
+      if (key === index && scores[index] >= 0.8) {
+        return (
+          <li key={key}>
+            <a href={link}>
+              <div className="reference-link">{title}</div>
+            </a>
+          </li>
+        );
+      }
+      return null;
+    })
+  )).filter(item => item !== null); // Get rid of null indices
   return (
     <div>
       <div style={containerStyle}>
         {content}
       </div>
-      {haveSources() && role === 'assistant' && (
+      {haveSources() && role === 'assistant' && listItems.length > 0 && (
         <div className="body.dark-sources" style={sourceContainerStyle}>
           <ul className="pt-3">
             Related Article Links:
@@ -69,6 +70,8 @@ ChatItem.propTypes = {
   sources: PropTypes.arrayOf(PropTypes.string),
   // eslint-disable-next-line react/require-default-props
   titles: PropTypes.arrayOf(PropTypes.string),
+  // eslint-disable-next-line react/require-default-props
+  scores: PropTypes.arrayOf(PropTypes.number),
 };
 
 export default ChatItem;

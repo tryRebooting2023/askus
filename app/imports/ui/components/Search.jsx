@@ -8,7 +8,7 @@ import LoadingSpinner from './LoadingSpinner';
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
   const [chatMessages, setChatMessages] = useState([
-    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?', sources: null, titles: null, isLoading: false },
+    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?', sources: null, titles: null, scores: null, isLoading: false },
   ]);
 
   const handleUserInput = (e) => {
@@ -43,7 +43,7 @@ const ITSearch = () => {
         setChatMessages(prevChatMessages => [
           ...prevChatMessages.slice(0, -1), // All messages except the last one (being rendered)
           { ...prevChatMessages[prevChatMessages.length - 1], isLoading: false }, // Ensure last message is no longer loading
-          { role: 'assistant', content: response.chatResponse, sources: response.linkArray, titles: response.titleArray, isLoading: false },
+          { role: 'assistant', content: response.chatResponse, sources: response.linkArray, titles: response.titleArray, scores: response.scoreArray, isLoading: false },
         ]);
 
         // Scroll to the bottom of the page
@@ -100,7 +100,7 @@ const ITSearch = () => {
           {chatMessages.map((chat, index) => (
             chat.isLoading ?
               <LoadingSpinner key={index} /> :
-              <ChatItem content={chat.content} role={chat.role} sources={chat.sources} titles={chat.titles} key={index} />
+              <ChatItem content={chat.content} role={chat.role} sources={chat.sources} titles={chat.titles} scores={chat.scores} key={index} />
           ))}
         </Col>
       </Row>

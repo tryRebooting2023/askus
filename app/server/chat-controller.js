@@ -63,6 +63,11 @@ const getEmbeddings = async (messages) => {
   });
   // Get context from first search result
   const context = searchResults.matches[0].metadata.content;
+  // Get the three scores from search results
+  const score1 = searchResults.matches[0].score;
+  const score2 = searchResults.matches[1].score;
+  const score3 = searchResults.matches[2].score;
+  const scoreArray = [score1, score2, score3];
   // Get three links from search results
   const file1 = searchResults.matches[0].metadata.fileName.split('.')[0];
   const file2 = searchResults.matches[1].metadata.fileName.split('.')[0];
@@ -84,11 +89,14 @@ const getEmbeddings = async (messages) => {
   // Return context and linkArray
 
   console.log(`Context Retrieved: ${context}`);
-
+  console.log(`yo what the1: ${scoreArray[0]} and ${titleArray[0]}`);
+  console.log(`yo what the2: ${scoreArray[1]} and ${titleArray[1]}`);
+  console.log(`yo what the3: ${scoreArray[2]} and ${titleArray[2]}`);
   return {
     context,
     linkArray,
     titleArray,
+    scoreArray,
   };
 };
 // Define a global or persistent object to store session data
@@ -102,6 +110,7 @@ Meteor.methods({
     const context = embeddingResults.context;
     const linkArray = embeddingResults.linkArray;
     const titleArray = embeddingResults.titleArray;
+    const scoreArray = embeddingResults.scoreArray;
     // Retrieve or initialize the user's session
     const userSession = userSessions[userId] || {
       messages: [],
@@ -135,6 +144,7 @@ Meteor.methods({
       chatResponse,
       linkArray,
       titleArray,
+      scoreArray,
     };
   },
 });

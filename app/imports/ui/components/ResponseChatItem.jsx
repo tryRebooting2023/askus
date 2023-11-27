@@ -13,7 +13,7 @@ const ResponseChatItem = ({ content, sources, titles }) => {
     boxShadow: '0px 7px 8px rgba(0, 0, 0, 0.1)',
     resize: 'vertical', // Enable vertical resizing only
     minWidth: '100px',
-    minHeight: '100px',
+    minHeight: '50px',
   };
 
   const sourceContainerStyle = {

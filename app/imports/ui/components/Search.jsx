@@ -15,6 +15,7 @@ const ITSearch = () => {
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
   };
+  // Call the useEffect hook to set up a listener on the chatMessages array
   useEffect(() => {
     // Scroll to the bottom of the page when chatMessages change
     window.scrollTo(0, document.body.scrollHeight);

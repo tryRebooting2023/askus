@@ -101,8 +101,9 @@ const ITSearch = () => {
           {chatMessages.map((chat, index) => (
             // eslint-disable-next-line no-nested-ternary
             chat.isLoading ?
-              <LoadingSpinner key={index} /> :
-              <ChatItem content={chat.content} role={chat.role} sources={chat.sources} titles={chat.titles} scores={chat.scores} key={index} />
+              <LoadingSpinner key={index} /> : chat.role === 'user' ?
+                <UserChatItem content={chat.content} key={index} /> :
+                <ResponseChatItem content={chat.content} sources={chat.sources} titles={chat.titles} scores={chat.scores} key={index} />
           ))}
         </Col>
       </Row>

@@ -4,7 +4,7 @@ import BackToLandingButton from '../components/BackToChatPageButton';
 
 /* A simple static component to render some text for the landing page. */
 const Tutorial = () => (
-  <Container id="landing-page" className="py-3">
+  <Container id="tutorial-page" className="py-3">
     <Row className="mb-4">
       <Col className="text-center"><h1>Let&apos;s Get Started!</h1></Col>
     </Row>
@@ -39,6 +39,7 @@ const Tutorial = () => (
             </p>
           </li>
           <li>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p>"Related Article Links" will show up.</p>
           </li>
           <li>

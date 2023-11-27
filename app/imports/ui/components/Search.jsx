@@ -58,7 +58,7 @@ const ITSearch = () => {
   };
 
   return (
-    <Container id="landing-page" className="container-fluid">
+    <Container id="search" className="container-fluid">
       <Row id="centerText" className="align-items-center justify-content-center campus-background">
         <Col xs={8} className="text-center">
           <br />
@@ -75,6 +75,7 @@ const ITSearch = () => {
         <Col xs={4}>
           <InputGroup className="mb-3 search-bar-input-group">
             <Form.Control
+              id="search-bar"
               placeholder="Ask a question (Ex: What is DUO?)"
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
@@ -83,7 +84,7 @@ const ITSearch = () => {
               onKeyDown={handleKeyDown}
             />
             <InputGroup.Text id="btn-group">
-              <Button onClick={handleSendMessage} variant="light"><Search /></Button>
+              <Button onClick={handleSendMessage} id="query-submit" variant="light"><Search /></Button>
             </InputGroup.Text>
           </InputGroup>
         </Col>

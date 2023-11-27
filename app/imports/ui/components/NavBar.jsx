@@ -26,7 +26,7 @@ const NavBar = () => {
         <DarkToggleMode />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="justify-content-end ms-auto">
-            <NavDropdown title={<List />} id="basic-nav-dropdown" className="menu-dropdown">
+            <NavDropdown title={<List />} id="menu-dropdown" className="menu-dropdown">
               <NavDropdown.Item id="home" title="Home">
                 <a href="https://www.hawaii.edu/its/" target="_blank" rel="noopener noreferrer" className="menu-link">
                   Home
@@ -47,12 +47,12 @@ const NavBar = () => {
                   Contact
                 </a>
               </NavDropdown.Item>
-              <NavDropdown.Item className="menu-link tutorial-link" id="tutorial" title="Tutorial" as={NavLink} to="/tutorial">
+              <NavDropdown.Item className="menu-link tutorial-link" id="tutorial-nav" title="Tutorial" as={NavLink} to="/tutorial">
                 Tutorial
               </NavDropdown.Item>
             </NavDropdown>
             {isAdmin ? (
-              <NavLink to="/analytics" className="nav-link">
+              <NavLink to="/analytics" className="nav-link" id="analytics-nav">
                 Analytics
               </NavLink>
             ) : ''}

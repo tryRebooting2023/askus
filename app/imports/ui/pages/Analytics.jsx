@@ -41,7 +41,7 @@ const Analytics = () => {
   };
 
   return (
-    <Container className="py-3">
+    <Container className="py-3" id="analytics-page">
       <Row className="justify-content-center">
         {/* Left column for Doughnut chart */}
         <Col md={7} className="border-right">

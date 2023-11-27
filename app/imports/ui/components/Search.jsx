@@ -2,8 +2,9 @@ import { Col, Container, Form, InputGroup, Row, Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
-import ChatItem from './ChatItem';
+import ResponseChatItem from './ResponseChatItem';
 import LoadingSpinner from './LoadingSpinner';
+import UserChatItem from './UserChatItem';
 
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
@@ -90,9 +91,11 @@ const ITSearch = () => {
         </Col>
         <Col xs={8} className="d-flex flex-column justify-content-start">
           {chatMessages.map((chat, index) => (
+            // eslint-disable-next-line no-nested-ternary
             chat.isLoading ?
-              <LoadingSpinner key={index} /> :
-              <ChatItem content={chat.content} role={chat.role} sources={chat.sources} titles={chat.titles} key={index} />
+              <LoadingSpinner key={index} /> : chat.role === 'user' ?
+                <UserChatItem content={chat.content} key={index} /> :
+                <ResponseChatItem content={chat.content} sources={chat.sources} titles={chat.titles} key={index} />
           ))}
         </Col>
       </Row>

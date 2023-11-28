@@ -129,6 +129,31 @@ Meteor.methods({
 
     const chatResponse = await createOpenAICompletion(messages);
 
+    if (this.userId) {
+      Meteor.users.update(
+        { _id: userId },
+        {
+          $push: {
+            chats: {
+              $each: [
+                {
+                  timestamp: new Date(),
+                  role: 'user',
+                  content: userMessage,
+                },
+                {
+                  timestamp: new Date(),
+                  role: 'assistant',
+                  content: chatResponse,
+                },
+              ],
+              $position: 0, // to insert at the beginning of the array
+            },
+          },
+        },
+      );
+    }
+
     userSession.messages.push({ role: 'assistant', content: chatResponse });
     userSessions[userId] = userSession; // Update the session
     return {
@@ -136,5 +161,16 @@ Meteor.methods({
       linkArray,
       titleArray,
     };
+  },
+});
+
+Meteor.methods({
+  getUserChatHistory() {
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized', 'User is not authorized to perform this action');
+    }
+
+    const user = Meteor.users.findOne({ _id: this.userId });
+    return user ? user.chats || [] : [];
   },
 });

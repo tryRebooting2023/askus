@@ -81,7 +81,7 @@ const ITSearch = () => {
       </Row>
       <Row className="align-middle">
         <Col xs={4}>
-          <InputGroup className="mb-3 search-bar-input-group">
+          <InputGroup className="mb-3 search-bar-input-group py-3">
             <Form.Control
               id="search-bar"
               placeholder="Ask a question (Ex: What is DUO?)"
@@ -96,7 +96,7 @@ const ITSearch = () => {
             </InputGroup.Text>
           </InputGroup>
         </Col>
-        <Col xs={8} className="d-flex flex-column justify-content-start">
+        <Col xs={8} className="d-flex flex-column justify-content-start pt-3">
           {chatMessages.map((chat, index) => (
             chat.isLoading ?
               <LoadingSpinner key={index} /> :

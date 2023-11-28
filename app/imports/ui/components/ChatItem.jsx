@@ -12,7 +12,7 @@ const ChatItem = ({ content, role, sources, titles }) => {
     marginBottom: '10px',
     borderRadius: '5px',
     overflowY: 'auto', // Enable vertical scrolling
-    maxHeight: '200px', // Adjust the maximum height as needed
+    maxHeight: '200px', // Adjust the maximemum height as needed
     boxShadow: '0px 7px 8px rgba(0, 0, 0, 0.1)',
   };
 

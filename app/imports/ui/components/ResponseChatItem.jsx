@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChatItem = ({ content, role, sources, titles, scores }) => {
-  const userBackgroundColor = 'gray';
-  const assistantBackgroundColor = 'green';
-
+const ResponseChatItem = ({ content, sources, titles }) => {
   const containerStyle = {
-    backgroundColor: role === 'user' ? userBackgroundColor : assistantBackgroundColor,
+    backgroundColor: 'green',
     color: 'white',
     padding: '10px',
     marginBottom: '10px',
     borderRadius: '5px',
-    overflowY: 'auto', // Enable vertical scrolling
-    maxHeight: '200px', // Adjust the maximum height as needed
+    overflow: 'auto',
+    maxHeight: '300px', // Adjust the maximum height as needed
     boxShadow: '0px 7px 8px rgba(0, 0, 0, 0.1)',
+    resize: 'vertical', // Enable vertical resizing only
+    minWidth: '100px',
+    minHeight: '50px',
   };
 
   const sourceContainerStyle = {
@@ -47,10 +47,10 @@ const ChatItem = ({ content, role, sources, titles, scores }) => {
   )).filter(item => item !== null); // Get rid of null indices
   return (
     <div>
-      <div style={containerStyle}>
+      <div style={containerStyle} contentEditable="true">
         {content}
       </div>
-      {haveSources() && role === 'assistant' && listItems.length > 0 && (
+      {haveSources() && (
         <div className="body.dark-sources" style={sourceContainerStyle}>
           <ul className="pt-3">
             Related Article Links:
@@ -63,9 +63,8 @@ const ChatItem = ({ content, role, sources, titles, scores }) => {
 };
 
 // Require a document to be passed to this component.
-ChatItem.propTypes = {
+ResponseChatItem.propTypes = {
   content: PropTypes.string.isRequired,
-  role: PropTypes.oneOf(['user', 'assistant']).isRequired,
   // eslint-disable-next-line react/require-default-props
   sources: PropTypes.arrayOf(PropTypes.string),
   // eslint-disable-next-line react/require-default-props
@@ -74,4 +73,4 @@ ChatItem.propTypes = {
   scores: PropTypes.arrayOf(PropTypes.number),
 };
 
-export default ChatItem;
+export default ResponseChatItem;

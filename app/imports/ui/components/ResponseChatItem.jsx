@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ResponseChatItem = ({ content, sources, titles }) => {
+const ResponseChatItem = ({ content, sources, titles, scores }) => {
   const containerStyle = {
     backgroundColor: 'green',
     color: 'white',

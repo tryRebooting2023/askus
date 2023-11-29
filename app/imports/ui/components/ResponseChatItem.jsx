@@ -25,10 +25,6 @@ const ResponseChatItem = ({ content, sources, titles, scores }) => {
     maxHeight: '200px', // Adjust the maximum height as needed
   };
 
-  function haveSources() {
-    return sources !== null;
-  }
-
   const uniqueSources = [...new Set(sources)];
   const uniqueTitles = [...new Set(titles)];
   const listItems = uniqueSources.flatMap((link, key) => (

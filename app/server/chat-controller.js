@@ -87,7 +87,11 @@ const getEmbeddings = async (messages) => {
   Articles.collection.update({ fileName: searchResults.matches[0].metadata.fileName }, { $inc: { useCount: 1 } });
   console.log(Articles.collection.find({ fileName: searchResults.matches[0].metadata.fileName }).fetch());
   // Return context and linkArray
+
   console.log(`Context Retrieved: ${context}`);
+  console.log(`yo what the1: ${scoreArray[0]} and ${titleArray[0]}`);
+  console.log(`yo what the2: ${scoreArray[1]} and ${titleArray[1]}`);
+  console.log(`yo what the3: ${scoreArray[2]} and ${titleArray[2]}`);
   return {
     context,
     linkArray,

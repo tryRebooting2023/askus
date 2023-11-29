@@ -50,14 +50,14 @@ const ResponseChatItem = ({ content, sources, titles, scores }) => {
       <div style={containerStyle} contentEditable="true">
         {content}
       </div>
-      {haveSources() && (
+      { listItems.length !== 0 ? (
         <div className="body.dark-sources" style={sourceContainerStyle}>
           <ul className="pt-3">
             Related Article Links:
             {listItems}
           </ul>
         </div>
-      )}
+      ) : ''}
     </div>
   );
 };

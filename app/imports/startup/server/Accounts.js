@@ -10,6 +10,7 @@ const createUser = (email, password, role) => {
     username: email,
     email: email,
     password: password,
+    chats: [],
   });
   if (role === 'admin') {
     Roles.createRole(role, { unlessExists: true });

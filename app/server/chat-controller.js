@@ -63,6 +63,11 @@ const getEmbeddings = async (messages) => {
   });
   // Get context from first search result
   const context = searchResults.matches[0].metadata.content;
+  // Get the three scores from search results
+  const score1 = searchResults.matches[0].score;
+  const score2 = searchResults.matches[1].score;
+  const score3 = searchResults.matches[2].score;
+  const scoreArray = [score1, score2, score3];
   // Get three links from search results
   const file1 = searchResults.matches[0].metadata.fileName.split('.')[0];
   const file2 = searchResults.matches[1].metadata.fileName.split('.')[0];
@@ -82,13 +87,12 @@ const getEmbeddings = async (messages) => {
   Articles.collection.update({ fileName: searchResults.matches[0].metadata.fileName }, { $inc: { useCount: 1 } });
   console.log(Articles.collection.find({ fileName: searchResults.matches[0].metadata.fileName }).fetch());
   // Return context and linkArray
-
   console.log(`Context Retrieved: ${context}`);
-
   return {
     context,
     linkArray,
     titleArray,
+    scoreArray,
   };
 };
 // Define a global or persistent object to store session data
@@ -102,6 +106,7 @@ Meteor.methods({
     const context = embeddingResults.context;
     const linkArray = embeddingResults.linkArray;
     const titleArray = embeddingResults.titleArray;
+    const scoreArray = embeddingResults.scoreArray;
     // Retrieve or initialize the user's session
     const userSession = userSessions[userId] || {
       messages: [],
@@ -129,12 +134,49 @@ Meteor.methods({
 
     const chatResponse = await createOpenAICompletion(messages);
 
+    if (this.userId) {
+      Meteor.users.update(
+        { _id: userId },
+        {
+          $push: {
+            chats: {
+              $each: [
+                {
+                  timestamp: new Date(),
+                  role: 'user',
+                  content: userMessage,
+                },
+                {
+                  timestamp: new Date(),
+                  role: 'assistant',
+                  content: chatResponse,
+                },
+              ],
+              $position: 0, // to insert at the beginning of the array
+            },
+          },
+        },
+      );
+    }
+
     userSession.messages.push({ role: 'assistant', content: chatResponse });
     userSessions[userId] = userSession; // Update the session
     return {
       chatResponse,
       linkArray,
       titleArray,
+      scoreArray,
     };
+  },
+});
+
+Meteor.methods({
+  getUserChatHistory() {
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized', 'User is not authorized to perform this action');
+    }
+
+    const user = Meteor.users.findOne({ _id: this.userId });
+    return user ? user.chats || [] : [];
   },
 });

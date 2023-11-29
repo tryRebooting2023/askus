@@ -50,6 +50,9 @@ const NavBar = () => {
               <NavDropdown.Item className="menu-link tutorial-link" id="tutorial-nav" title="Tutorial" as={NavLink} to="/tutorial">
                 Tutorial
               </NavDropdown.Item>
+              <NavDropdown.Item className="dark-mode-toggle" id="dark-mode-toggle">
+                <DarkToggleMode />
+              </NavDropdown.Item>
             </NavDropdown>
             {isAdmin ? (
               <NavLink to="/analytics" className="nav-link" id="analytics-nav">

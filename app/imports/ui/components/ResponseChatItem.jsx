@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChatItem = ({ content, role, sources, titles }) => {
-  const userBackgroundColor = 'gray';
-  const assistantBackgroundColor = 'green';
-
+const ResponseChatItem = ({ content, sources, titles, scores }) => {
   const containerStyle = {
-    backgroundColor: role === 'user' ? userBackgroundColor : assistantBackgroundColor,
+    backgroundColor: 'green',
     color: 'white',
     padding: '10px',
     marginBottom: '10px',
     borderRadius: '5px',
-    overflowY: 'auto', // Enable vertical scrolling
-    maxHeight: '200px', // Adjust the maximemum height as needed
+    overflow: 'auto',
+    maxHeight: '300px', // Adjust the maximum height as needed
     boxShadow: '0px 7px 8px rgba(0, 0, 0, 0.1)',
+    resize: 'vertical', // Enable vertical resizing only
+    minWidth: '100px',
+    minHeight: '50px',
   };
 
   const sourceContainerStyle = {
@@ -31,25 +31,26 @@ const ChatItem = ({ content, role, sources, titles }) => {
 
   const uniqueSources = [...new Set(sources)];
   const uniqueTitles = [...new Set(titles)];
-
-  const listItems = uniqueSources.map((link, key) => (
-    <li key={key}>
-      <a href={link}>
-        {uniqueTitles.map((title, index) => {
-          if (key === index) {
-            return <div key={index} className="reference-link">{title}</div>;
-          }
-          return null;
-        })}
-      </a>
-    </li>
-  ));
+  const listItems = uniqueSources.flatMap((link, key) => (
+    uniqueTitles.map((title, index) => {
+      if (key === index && scores[index] >= 0.8) {
+        return (
+          <li key={key}>
+            <a href={link}>
+              <div className="reference-link">{title}</div>
+            </a>
+          </li>
+        );
+      }
+      return null;
+    })
+  )).filter(item => item !== null); // Get rid of null indices
   return (
     <div>
-      <div style={containerStyle}>
+      <div style={containerStyle} contentEditable="true">
         {content}
       </div>
-      {haveSources() && role === 'assistant' && (
+      {haveSources() && (
         <div className="body.dark-sources" style={sourceContainerStyle}>
           <ul className="pt-3">
             Related Article Links:
@@ -62,13 +63,14 @@ const ChatItem = ({ content, role, sources, titles }) => {
 };
 
 // Require a document to be passed to this component.
-ChatItem.propTypes = {
+ResponseChatItem.propTypes = {
   content: PropTypes.string.isRequired,
-  role: PropTypes.oneOf(['user', 'assistant']).isRequired,
   // eslint-disable-next-line react/require-default-props
   sources: PropTypes.arrayOf(PropTypes.string),
   // eslint-disable-next-line react/require-default-props
   titles: PropTypes.arrayOf(PropTypes.string),
+  // eslint-disable-next-line react/require-default-props
+  scores: PropTypes.arrayOf(PropTypes.number),
 };
 
-export default ChatItem;
+export default ResponseChatItem;

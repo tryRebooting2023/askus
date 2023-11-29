@@ -1,19 +1,25 @@
 import { Col, Container, Form, InputGroup, Row, Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
-import ChatItem from './ChatItem';
+import ResponseChatItem from './ResponseChatItem';
 import LoadingSpinner from './LoadingSpinner';
+import UserChatItem from './UserChatItem';
 
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
   const [chatMessages, setChatMessages] = useState([
-    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?', sources: null, titles: null, isLoading: false },
+    { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?', sources: null, titles: null, scores: null, isLoading: false },
   ]);
 
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
   };
+  // Call the useEffect hook to set up a listener on the chatMessages array
+  useEffect(() => {
+    // Scroll to the bottom of the page when chatMessages change
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [chatMessages]); // Add chatMessages as a dependency
 
   const handleSendMessage = () => {
     // If the user did not enter any text, do nothing
@@ -38,8 +44,11 @@ const ITSearch = () => {
         setChatMessages(prevChatMessages => [
           ...prevChatMessages.slice(0, -1), // All messages except the last one (being rendered)
           { ...prevChatMessages[prevChatMessages.length - 1], isLoading: false }, // Ensure last message is no longer loading
-          { role: 'assistant', content: response.chatResponse, sources: response.linkArray, titles: response.titleArray, isLoading: false },
+          { role: 'assistant', content: response.chatResponse, sources: response.linkArray, titles: response.titleArray, scores: response.scoreArray, isLoading: false },
         ]);
+
+        // Scroll to the bottom of the page
+        window.scrollTo(0, document.body.scrollHeight);
       } else {
         console.error(error);
       }
@@ -73,7 +82,7 @@ const ITSearch = () => {
       </Row>
       <Row className="align-middle">
         <Col xs={4}>
-          <InputGroup className="mb-3 search-bar-input-group">
+          <InputGroup className="mb-3 search-bar-input-group py-3">
             <Form.Control
               id="search-bar"
               placeholder="Ask a question (Ex: What is DUO?)"
@@ -88,11 +97,13 @@ const ITSearch = () => {
             </InputGroup.Text>
           </InputGroup>
         </Col>
-        <Col xs={8} className="d-flex flex-column justify-content-start">
+        <Col xs={8} className="d-flex flex-column justify-content-start pt-3">
           {chatMessages.map((chat, index) => (
+            // eslint-disable-next-line no-nested-ternary
             chat.isLoading ?
-              <LoadingSpinner key={index} /> :
-              <ChatItem content={chat.content} role={chat.role} sources={chat.sources} titles={chat.titles} key={index} />
+              <LoadingSpinner key={index} /> : chat.role === 'user' ?
+                <UserChatItem content={chat.content} key={index} /> :
+                <ResponseChatItem content={chat.content} sources={chat.sources} titles={chat.titles} scores={chat.scores} key={index} />
           ))}
         </Col>
       </Row>

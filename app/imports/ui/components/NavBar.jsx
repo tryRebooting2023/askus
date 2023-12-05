@@ -32,15 +32,11 @@ const NavBar = () => {
                   Home
                 </a>
               </NavDropdown.Item>
-              <NavDropdown.Item id="about" title="About">
-                <a href="https://www.hawaii.edu/its/about/" target="_blank" rel="noopener noreferrer" className="menu-link">
-                  About
-                </a>
+              <NavDropdown.Item id="about" title="About" as={NavLink} to="https://www.hawaii.edu/its/about/" target="_blank" rel="noopener noreferrer">
+                About
               </NavDropdown.Item>
-              <NavDropdown.Item id="new" title="News">
-                <a href="https://www.hawaii.edu/its/category/news//" target="_blank" rel="noopener noreferrer" className="menu-link">
-                  News
-                </a>
+              <NavDropdown.Item id="news" title="News" as={NavLink} to="https://www.hawaii.edu/its/category/news/" target="_blank" rel="noopener noreferrer">
+                News
               </NavDropdown.Item>
               <NavDropdown.Item className="contact" title="Contact" as={NavLink} to="https://www.hawaii.edu/its/contact/" target="_blank" rel="noopener noreferrer">
                 Contact

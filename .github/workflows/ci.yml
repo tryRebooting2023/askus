@@ -36,15 +36,9 @@ jobs:
       - name: Run Meteor commands
         shell: bash -l {0}
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
-          PINECONE_INDEX: ${{ secrets.PINECONE_INDEX }}
-          PINECONE_ENVIRONMENT: ${{ secrets.PINECONE_ENVIRONMENT }}
+          METEOR_SETTINGS: ${{ secrets.METEOR_SETTINGS }}
         run: |
-          echo $OPENAI_API_KEY
-          echo $PINECONE_API_KEY
-          echo $PINECONE_INDEX
-          echo $PINECONE_ENVIRONMENT
+          echo $METEOR_SETTINGS
           meteor npm install
           meteor npm run lint
           meteor npm run testcafe-ci-github

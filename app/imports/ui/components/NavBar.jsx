@@ -37,10 +37,8 @@ const NavBar = () => {
                   About
                 </a>
               </NavDropdown.Item>
-              <NavDropdown.Item id="new" title="News">
-                <a href="https://www.hawaii.edu/its/category/news//" target="_blank" rel="noopener noreferrer" className="menu-link">
-                  News
-                </a>
+              <NavDropdown.Item className="news" title="News" as={NavLink} to="https://www.hawaii.edu/its/category/news/" target="_blank" rel="noopener noreferrer">
+                News
               </NavDropdown.Item>
               <NavDropdown.Item id="contact" title="Contact">
                 <a href="https://www.hawaii.edu/its/contact/" target="_blank" rel="noopener noreferrer" className="menu-link">

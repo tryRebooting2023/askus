@@ -6,7 +6,7 @@ import { check } from 'meteor/check';
 import { Articles } from '../imports/api/articles/Articles';
 
 const openai = new OpenAI({
-  apiKey: Meteor.settings.openaiApiKey,
+  apiKey: Meteor.settings.OPENAI_API_KEY,
 });
 
 // Constants
@@ -15,15 +15,15 @@ const MAX_TOKENS_PER_MESSAGE = 400;
 /* eslint-disable no-console */
 // Initialize Pinecone database
 const pinecone = new Pinecone({
-  apiKey: Meteor.settings.pineconeApiKey,
-  environment: Meteor.settings.pineconeEnvironment,
+  apiKey: Meteor.settings.PINECONE_API_KEY,
+  environment: Meteor.settings.PINECONE_ENVIRONMENT,
 });
 // Initialize OpenAI Embeddings
 const embeddings = new OpenAIEmbeddings({
-  openAIApiKey: Meteor.settings.openaiApiKey,
+  openAIApiKey: Meteor.settings.OPENAI_API_KEY,
 });
 // Initialize Pinecone index
-const index = pinecone.index(Meteor.settings.pineconeIndex);
+const index = pinecone.index(Meteor.settings.PINECONE_INDEX);
 
 const throwError = (type, message) => {
   console.error(message);

@@ -41,6 +41,10 @@ jobs:
           PINECONE_INDEX: ${{ secrets.PINECONE_INDEX }}
           PINECONE_ENVIRONMENT: ${{ secrets.PINECONE_ENVIRONMENT }}
         run: |
+          echo $OPENAI_API_KEY
+          echo $PINECONE_API_KEY
+          echo $PINECONE_INDEX
+          echo $PINECONE_ENVIRONMENT
           meteor npm install
           meteor npm run lint
-          meteor npm run testcafe-ci-github "$OPENAI_API_KEY" "$PINECONE_API_KEY" "$PINECONE_INDEX" "$PINECONE_ENVIRONMENT"
+          meteor npm run testcafe-ci-github

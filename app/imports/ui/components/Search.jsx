@@ -3,7 +3,7 @@ import { Search } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import ResponseChatItem from './ResponseChatItem';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingDots from './LoadingDots';
 import UserChatItem from './UserChatItem';
 import NewSearchBar from './NewSearchBar';
 
@@ -111,7 +111,7 @@ const ITSearch = () => {
             <React.Fragment key={index}>
               {/* eslint-disable-next-line no-nested-ternary */}
               {chat.isLoading ? (
-                <LoadingSpinner />
+                <LoadingDots />
               ) : chat.role === 'user' ? (
                 <UserChatItem content={chat.content} />
               ) : (

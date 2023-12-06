@@ -23,7 +23,6 @@ const NavBar = () => {
           <Image src="/images/its_logo_uppercase_out.png" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <DarkToggleMode />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="justify-content-end ms-auto">
             <NavDropdown title={<List />} id="menu-dropdown" className="menu-dropdown">

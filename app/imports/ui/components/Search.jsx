@@ -5,15 +5,23 @@ import { Meteor } from 'meteor/meteor';
 import ResponseChatItem from './ResponseChatItem';
 import LoadingSpinner from './LoadingSpinner';
 import UserChatItem from './UserChatItem';
+import NewSearchBar from './NewSearchBar';
 
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
+  const [inputDisabled, setInputDisabled] = useState(false);
+  const [hasUsedInput, setHasUsedInput] = useState(false);
+  const [showNewSearchBar, setShowNewSearchBar] = useState(false);
+  const [newUserInput, setNewUserInput] = useState('');
   const [chatMessages, setChatMessages] = useState([
     { role: 'assistant', content: 'Hello and welcome to Ask Us! How can I assist you today?', sources: null, titles: null, scores: null, isLoading: false },
   ]);
 
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
+  };
+  const handleNewUserInput = (e) => {
+    setNewUserInput(e.target.value);
   };
   // Call the useEffect hook to set up a listener on the chatMessages array
   useEffect(() => {
@@ -22,47 +30,47 @@ const ITSearch = () => {
   }, [chatMessages]); // Add chatMessages as a dependency
 
   const handleSendMessage = () => {
+    const currentInput = hasUsedInput ? newUserInput : userInput;
+
     // If the user did not enter any text, do nothing
-    if (userInput.trim() === '') {
+    if (currentInput.trim() === '') {
       return;
     }
-    // Add the user's message to the chatMessages array
+
     setChatMessages((prevChatMessages) => [
       ...prevChatMessages,
-      { role: 'user', content: userInput, isLoading: true },
+      { role: 'user', content: currentInput, isLoading: true },
     ]);
-    // Get the current user's ID
+
+    setInputDisabled(true);
+
     let currentUser = Meteor.userId();
-    // If the user is not logged in, set their ID to 'anonymous'
     if (currentUser === null) {
       currentUser = 'anonymous';
     }
-    // Send the user's message and session ID to the server using the getChatResponse method
-    Meteor.call('getChatResponse', currentUser, userInput, (error, response) => {
+
+    Meteor.call('getChatResponse', currentUser, currentInput, (error, response) => {
       if (!error) {
-        // Add the response from OpenAI to the chatMessages array
         setChatMessages(prevChatMessages => [
-          ...prevChatMessages.slice(0, -1), // All messages except the last one (being rendered)
-          { ...prevChatMessages[prevChatMessages.length - 1], isLoading: false }, // Ensure last message is no longer loading
+          ...prevChatMessages.slice(0, -1),
+          { ...prevChatMessages[prevChatMessages.length - 1], isLoading: false },
           { role: 'assistant', content: response.chatResponse, sources: response.linkArray, titles: response.titleArray, scores: response.scoreArray, isLoading: false },
         ]);
 
-        // Scroll to the bottom of the page
-        window.scrollTo(0, document.body.scrollHeight);
+        setInputDisabled(false);
+        setHasUsedInput(true);
+        setNewUserInput('');
+        setShowNewSearchBar(true);
       } else {
         console.error(error);
       }
     });
-
-    // Clear the search bar
-    setUserInput('');
   };
 
   const handleKeyDown = (e) => {
-    // Check if the pressed key is Enter
     if (e.key === 'Enter') {
-      e.preventDefault(); // Prevent the default behavior of the enter key (e.g., form submission)
-      handleSendMessage(); // Call your sendMessage function
+      e.preventDefault();
+      handleSendMessage();
     }
   };
 
@@ -91,19 +99,41 @@ const ITSearch = () => {
               value={userInput}
               onChange={handleUserInput}
               onKeyDown={handleKeyDown}
+              disabled={inputDisabled || (hasUsedInput && showNewSearchBar)}
             />
             <InputGroup.Text id="btn-group">
-              <Button onClick={handleSendMessage} id="query-submit" variant="light"><Search /></Button>
+              <Button onClick={handleSendMessage} id="query-submit" variant="light" disabled={inputDisabled || (hasUsedInput && showNewSearchBar)}><Search /></Button>
             </InputGroup.Text>
           </InputGroup>
         </Col>
         <Col xs={8} className="d-flex flex-column justify-content-start pt-3">
           {chatMessages.map((chat, index) => (
-            // eslint-disable-next-line no-nested-ternary
-            chat.isLoading ?
-              <LoadingSpinner key={index} /> : chat.role === 'user' ?
-                <UserChatItem content={chat.content} key={index} /> :
-                <ResponseChatItem content={chat.content} sources={chat.sources} titles={chat.titles} scores={chat.scores} key={index} />
+            <React.Fragment key={index}>
+              {/* eslint-disable-next-line no-nested-ternary */}
+              {chat.isLoading ? (
+                <LoadingSpinner />
+              ) : chat.role === 'user' ? (
+                <UserChatItem content={chat.content} />
+              ) : (
+                <>
+                  <ResponseChatItem
+                    content={chat.content}
+                    sources={chat.sources}
+                    titles={chat.titles}
+                    scores={chat.scores}
+                  />
+                  {showNewSearchBar && index === chatMessages.length - 1 && (
+                    <NewSearchBar
+                      userInput={newUserInput}
+                      onUserInput={handleNewUserInput}
+                      onSendMessage={handleSendMessage}
+                      onKeyDown={handleKeyDown}
+                      disabled={inputDisabled}
+                    />
+                  )}
+                </>
+              )}
+            </React.Fragment>
           ))}
         </Col>
       </Row>

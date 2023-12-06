@@ -76,7 +76,7 @@ const ITSearch = () => {
 
   return (
     <Container id="search" className="container-fluid">
-      <Row id="centerText" className="align-items-center justify-content-center campus-background mt-5 pt-5">
+      <Row id="centerText" className="align-items-center justify-content-center campus-background mt-3 pt-3">
         <Col xs={8} className="text-center">
           <br />
           <br />

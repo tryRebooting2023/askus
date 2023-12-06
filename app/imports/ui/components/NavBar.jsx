@@ -27,10 +27,8 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="justify-content-end ms-auto">
             <NavDropdown title={<List />} id="menu-dropdown" className="menu-dropdown">
-              <NavDropdown.Item id="home" title="Home">
-                <a href="https://www.hawaii.edu/its/" target="_blank" rel="noopener noreferrer" className="menu-link">
-                  Home
-                </a>
+              <NavDropdown.Item id="home" title="Home" as={NavLink} to="https://www.hawaii.edu/its/" target="_blank" rel="noopener noreferrer">
+                Home
               </NavDropdown.Item>
               <NavDropdown.Item id="about" title="About" as={NavLink} to="https://www.hawaii.edu/its/about/" target="_blank" rel="noopener noreferrer">
                 About

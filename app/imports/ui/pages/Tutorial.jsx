@@ -85,7 +85,7 @@ const Tutorial = () => (
     <Row className="mb-5 justify-content-sm-evenly">
       <Col className="justify-content-center text-center">
         <h4>Dark Mode Toggle</h4>
-        <p>Located next to the logo. Toggle between dark and light mode based on your preference.
+        <p>Located in the navigation bar menu. Toggle between dark and light mode based on your preference.
         </p>
       </Col>
       <Col className="justify-content-center text-center">

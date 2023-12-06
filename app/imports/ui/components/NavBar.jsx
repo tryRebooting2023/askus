@@ -25,6 +25,9 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="justify-content-end ms-auto">
+            <NavDropdown title="Contact" id="contact-dropdown" className="contact-dropdown">
+              <NavDropdown.Item id="feedback-form" title="Feedback" as={NavLink} to="https://forms.gle/LQgB2maXFW5L4fKo7" target="_blank" rel="noopener noreferrer">Send your feedback!</NavDropdown.Item>
+            </NavDropdown>
             <NavDropdown title={<List />} id="menu-dropdown" className="menu-dropdown">
               <NavDropdown.Item id="home" title="Home" as={NavLink} to="https://www.hawaii.edu/its/" target="_blank" rel="noopener noreferrer">
                 Home

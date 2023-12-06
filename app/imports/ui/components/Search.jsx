@@ -6,6 +6,8 @@ import ResponseChatItem from './ResponseChatItem';
 import LoadingDots from './LoadingDots';
 import UserChatItem from './UserChatItem';
 import NewSearchBar from './NewSearchBar';
+import GettingStartedButton from './GettingStartedButton';
+import BackToLandingButton from './BackToChatPageButton';
 
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
@@ -84,6 +86,7 @@ const ITSearch = () => {
           <h1>Ask Us</h1>
           <h6>A searchable knowledge base of frequently asked questions (FAQs) related to information technology.</h6>
           <br />
+          <GettingStartedButton />
           <br />
           <br />
         </Col>

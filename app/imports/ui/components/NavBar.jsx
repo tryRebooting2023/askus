@@ -17,7 +17,7 @@ const NavBar = () => {
   }), []);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="fixed-top">
       <Container>
         <Navbar.Brand as={NavLink} to="/">
           <Image src="/images/its_logo_uppercase_out.png" />

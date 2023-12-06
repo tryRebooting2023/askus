@@ -29,7 +29,7 @@ body.dark-mode .navbar label {
   color: #363535;
 }
 
-body.dark-mode-sources {
+body.dark-sources {
   color: white;
 }
 
@@ -63,7 +63,7 @@ body {
   color: deepskyblue;
 }
 .reference-link:hover {
-  color: navy;
+  color: steelblue;
 }
 
 .tutorial-link:hover {
@@ -82,14 +82,6 @@ body {
   background: rgb(191,142,12);
   background: linear-gradient(90deg, rgba(191,142,12,1) 0%, rgba(255,255,255,1) 50%, rgba(191,142,12,1) 100%);
 }
-
-/*
-footer {
-  color: white;
-  background-color: #333;
-}
-
- */
 
 .campus-background {
   background: url("./images/hawaii-hall.png") no-repeat center center fixed;

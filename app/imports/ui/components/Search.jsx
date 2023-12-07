@@ -78,8 +78,12 @@ const ITSearch = () => {
   return (
     <Container id="search" className="container-fluid">
       <Row id="centerText" className="align-items-center justify-content-center campus-background">
-        <Col xs={7} className="text-center">
-          <Image src="/images/askus-logo-3.png" width="380px" />
+        <Col xs={5} className="text-center">
+          <Image src="/images/askus-logo-3.png" width="450px" />
+        </Col>
+        <Col xs={5}>
+          <br/>
+          <br/>
           <h4>A searchable knowledge base of frequently asked questions (FAQs) related to information technology.</h4>
           <br />
           <GettingStartedButton />

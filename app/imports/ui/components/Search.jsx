@@ -1,4 +1,4 @@
-import { Col, Container, Form, InputGroup, Row, Button } from 'react-bootstrap';
+import { Col, Container, Form, InputGroup, Row, Button, Image } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
@@ -7,7 +7,6 @@ import LoadingDots from './LoadingDots';
 import UserChatItem from './UserChatItem';
 import NewSearchBar from './NewSearchBar';
 import GettingStartedButton from './GettingStartedButton';
-import BackToLandingButton from './BackToChatPageButton';
 
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
@@ -79,12 +78,9 @@ const ITSearch = () => {
   return (
     <Container id="search" className="container-fluid">
       <Row id="centerText" className="align-items-center justify-content-center campus-background">
-        <Col xs={8} className="text-center">
-          <br />
-          <br />
-          <br />
-          <h1>Ask Us</h1>
-          <h6>A searchable knowledge base of frequently asked questions (FAQs) related to information technology.</h6>
+        <Col xs={7} className="text-center">
+          <Image src="/images/askus-logo-3.png" width="380px" />
+          <h4>A searchable knowledge base of frequently asked questions (FAQs) related to information technology.</h4>
           <br />
           <GettingStartedButton />
           <br />

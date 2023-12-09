@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Alert, Card, Col, Container, Row, Button } from 'react-bootstrap';
+import { Alert, Card, Col, Container, Row, Button, Image } from 'react-bootstrap';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
@@ -73,7 +73,7 @@ const SignIn = () => {
             </Card>
             <Row className="justify-content-center">
               <Col className="justify-content-center py-3">
-                <Button onClick={handleGoogleLoginSuccess}>Login With Google</Button>
+                <Button variant="outline-primary" className="d-flex align-items-center border-0 p-0" onClick={handleGoogleLoginSuccess}><Image src="/images/web_light_rd_SI@1x.png" /></Button>
               </Col>
             </Row>
           </AutoForm>

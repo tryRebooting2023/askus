@@ -41,6 +41,7 @@ const SignIn = () => {
       if (!err) {
         // eslint-disable-next-line no-console
         console.log('Successfully Logged In');
+        // Access user information after successful login
         setRedirect(true);
         // eslint-disable-next-line no-console
       } else console.log(err.reason || 'Unknown Error');
@@ -70,7 +71,11 @@ const SignIn = () => {
                 <SubmitField id="signin-form-submit" />
               </Card.Body>
             </Card>
-            <Button onClick={handleGoogleLoginSuccess}>Login With Google</Button>
+            <Row className="justify-content-center">
+              <Col className="justify-content-center py-3">
+                <Button onClick={handleGoogleLoginSuccess}>Login With Google</Button>
+              </Col>
+            </Row>
           </AutoForm>
           <Alert variant="light">
             <Link to="/signup">Click here to Register</Link>

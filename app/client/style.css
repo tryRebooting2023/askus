@@ -40,10 +40,8 @@ body {
   --bs-light-rgb: var(--matr-navbar-bg-rgb);
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.flex-grow-1 {
+  flex-grow: 1;
 }
 
 /* Set the alert background on the signin and signup pages. */

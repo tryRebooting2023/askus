@@ -27,18 +27,20 @@ const App = () => {
   return (
     <Router>
       <div className="d-flex flex-column min-vh-100">
-        <NavBar />
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signout" element={<SignOut />} />
-          <Route path="/tutorial" element={<Tutorial />} />
-          <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/analytics" element={<AdminProtectedRoute ready={ready}><Analytics /></AdminProtectedRoute>} />
-          <Route path="/notauthorized" element={<NotAuthorized />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="flex-grow-1"> {/* This div grows to fill the available space */}
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signout" element={<SignOut />} />
+            <Route path="/tutorial" element={<Tutorial />} />
+            <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+            <Route path="/analytics" element={<AdminProtectedRoute ready={ready}><Analytics /></AdminProtectedRoute>} />
+            <Route path="/notauthorized" element={<NotAuthorized />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>

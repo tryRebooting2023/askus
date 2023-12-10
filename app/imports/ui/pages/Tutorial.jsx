@@ -6,7 +6,7 @@ import BackToLandingButton from '../components/BackToChatPageButton';
 const Tutorial = () => (
   <Container id="tutorial-page" className="py-3">
     <Row className="mb-4">
-      <Col className="text-center"><h1>Let&apos;s Get Started!</h1></Col>
+      <Col className="text-center"><h1>Ask Us Features</h1></Col>
     </Row>
     <Row className="mb-4 text-center text-bg-secondary">
       <h2>Chat/Landing Page</h2>
@@ -73,10 +73,10 @@ const Tutorial = () => (
     </Row>
     <Row className="justify-content-center align-content-center mb-4">
       <Col className="justify-content-center align-content-center text-center">
-        <Image src="/images/dark-light-mode-toggle.png" width="300px" className="img-fluid" />
+        <Image src="/images/analytics-page.png" width="300px" className="img-fluid" />
       </Col>
       <Col className="justify-content-center align-content-center text-center">
-        <Image src="/images/toggle-dropdown.png" width="180px" className="img-fluid" />
+        <Image src="/images/new-dropdown-toggle.png" width="180px" className="img-fluid" />
       </Col>
       <Col className="justify-content-center align-content-center text-center">
         <Image src="/images/toggle-sign-in-out.png" width="250px" className="img-fluid" />
@@ -84,8 +84,8 @@ const Tutorial = () => (
     </Row>
     <Row className="mb-5 justify-content-sm-evenly">
       <Col className="justify-content-center text-center">
-        <h4>Dark Mode Toggle</h4>
-        <p>Located next to the logo. Toggle between dark and light mode based on your preference.
+        <h4>Analytics Page</h4>
+        <p>Exclusively for IT admin to view popular searches.
         </p>
       </Col>
       <Col className="justify-content-center text-center">

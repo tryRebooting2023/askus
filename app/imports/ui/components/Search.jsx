@@ -77,20 +77,21 @@ const ITSearch = () => {
 
   return (
     <Container id="search" className="container-fluid">
-      <Row id="centerText" className="align-items-center justify-content-center campus-background">
-        <Col xs={5} className="text-center">
-          <Image src="/images/askus-logo-3.png" width="450px" />
-        </Col>
-        <Col xs={5}>
-          <br/>
-          <br/>
-          <h4>A searchable knowledge base of frequently asked questions (FAQs) related to information technology.</h4>
-          <br />
-          <GettingStartedButton />
-          <br />
-          <br />
-        </Col>
-      </Row>
+      <Container>
+        <Row id="centerText" className="align-items-center justify-content-center campus-background">
+          <Col xs={5} className="text-center">
+            <Image src="/images/askus-logo-3.png" width="300px" className="container-fluid" />
+          </Col>
+          <Col xs={5}>
+            <br />
+            <h5>A searchable knowledge base of frequently asked questions (FAQs) related to information technology.</h5>
+            <br />
+            <GettingStartedButton />
+            <br />
+            <br />
+          </Col>
+        </Row>
+      </Container>
       <Row className="align-middle">
         <Col xs={4}>
           <InputGroup className="mb-3 search-bar-input-group py-3">

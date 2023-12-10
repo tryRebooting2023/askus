@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 const Footer = () => (
-  <footer className="bg-light">
+  <footer>
     <Container className="p-4">
       <Row>
         <Col>

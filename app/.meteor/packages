@@ -43,3 +43,5 @@ zodern:hide-production-sourcemaps
 hot-module-replacement@0.5.3
 dev-error-overlay@0.1.2
 mrt:cheerio
+service-configuration
+accounts-google

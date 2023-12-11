@@ -7,7 +7,6 @@ import LoadingDots from './LoadingDots';
 import UserChatItem from './UserChatItem';
 import NewSearchBar from './NewSearchBar';
 import GettingStartedButton from './GettingStartedButton';
-import BackToLandingButton from './BackToChatPageButton';
 
 const ITSearch = () => {
   const [userInput, setUserInput] = useState('');
@@ -92,7 +91,7 @@ const ITSearch = () => {
         </Col>
       </Row>
       <Row className="align-middle">
-        <Col xs={4}>
+        <Col xs={12} md={4}>
           <InputGroup className="mb-3 search-bar-input-group py-3">
             <Form.Control
               id="search-bar"
@@ -109,7 +108,7 @@ const ITSearch = () => {
             </InputGroup.Text>
           </InputGroup>
         </Col>
-        <Col xs={8} className="d-flex flex-column justify-content-start pt-3">
+        <Col xs={12} md={8} className="d-flex flex-column justify-content-start pt-3">
           {chatMessages.map((chat, index) => (
             <React.Fragment key={index}>
               {/* eslint-disable-next-line no-nested-ternary */}

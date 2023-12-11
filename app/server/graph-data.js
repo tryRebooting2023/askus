@@ -8,7 +8,7 @@ Meteor.methods({
     const articleData = articles.map((article) => article.useCount);
     const articleLabels = articles.map((article) => {
       // Append fileName to form the link
-      const link = `https://www.hawaii.edu/askus/${article.fileName}`;
+      const link = `https://www.hawaii.edu/askus/${article.fileName.split('.')[0]}`;
       return { label: article.title, link: link, count: article.useCount };
     });
     return {

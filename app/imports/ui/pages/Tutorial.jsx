@@ -24,7 +24,7 @@ const Tutorial = () => (
           <li>
             <p>This loading spinner message will appear under your message as the answers are being generated.</p>
           </li>
-          <Image fluid src="/images/landing-page-2.png" width="200px" className="img-fluid" />
+          <Image fluid src="/images/loading-pic.jpeg" width="200px" className="img-fluid" />
         </ul>
       </Col>
     </Row>

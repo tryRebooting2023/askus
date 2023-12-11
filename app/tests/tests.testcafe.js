@@ -9,6 +9,7 @@ import { tutorialPage } from './tutorial.page';
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'admin@foo.com', password: 'changeme' };
+/* const googleCredentials = { gmail: 'tryrebooting2023@gmail.com', password: '123456qwerty!@#$%^QWERTY' }; */
 const query = 'How can I change my UH account name?';
 const liCount = 1;
 
@@ -26,6 +27,16 @@ test('Test that signin and signout work', async (testController) => {
   await navBar.logout(testController);
   await signoutPage.isDisplayed(testController);
 });
+
+/*
+test.only('Test that Google signin works', async (testController) => {
+  await navBar.gotoSignInPage(testController);
+  await signinPage.googleSignin(testController, googleCredentials.gmail, googleCredentials.password);
+  await navBar.isLoggedInWithGoogle(testController, 'James');
+  await navBar.logout(testController);
+  await signoutPage.isDisplayed(testController);
+});
+*/
 
 test('Test the Analytics page', async (testController) => {
   await navBar.gotoSignInPage(testController);

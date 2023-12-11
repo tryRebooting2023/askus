@@ -73,7 +73,7 @@ const SignIn = () => {
             </Card>
             <Row className="justify-content-center">
               <Col className="justify-content-center py-3">
-                <Button variant="outline-primary" className="d-flex align-items-center border-0 p-0" onClick={handleGoogleLoginSuccess}><Image src="/images/web_light_rd_SI@1x.png" /></Button>
+                <Button variant="outline-primary" className="d-flex align-items-center border-0 p-0" id="google-signin-submit" onClick={handleGoogleLoginSuccess}><Image src="/images/web_light_rd_SI@1x.png" /></Button>
               </Col>
             </Row>
           </AutoForm>

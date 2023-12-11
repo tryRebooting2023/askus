@@ -8,10 +8,24 @@ import { BoxArrowRight, List, PersonFill, PersonPlusFill } from 'react-bootstrap
 import DarkToggleMode from './DarkToggleMode';
 
 const NavBar = () => {
-  // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  const { currentUser } = useTracker(() => ({
-    currentUser: Meteor.user() ? Meteor.user().username : '',
-  }), []);
+  const { currentUser } = useTracker(() => {
+    const user = Meteor.user();
+
+    // Check if user is defined
+    if (user) {
+      // Check if 'profile' is defined and has a 'name' property
+      const userName = user.profile?.name;
+
+      // If 'name' exists, use it; otherwise, fallback to 'username'
+      return {
+        currentUser: userName || user.username || '',
+      };
+    }
+    return {
+      currentUser: '',
+    };
+
+  }, []);
   const { isAdmin } = useTracker(() => ({
     isAdmin: Roles.userIsInRole(Meteor.userId(), 'admin'),
   }), []);

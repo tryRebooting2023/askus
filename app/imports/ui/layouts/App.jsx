@@ -27,7 +27,7 @@ const App = () => {
   return (
     <Router>
       <div className="d-flex flex-column min-vh-100">
-        <div className="flex-grow-1"> {/* This div grows to fill the available space */}
+        <div className="flex-grow-1">
           <NavBar />
           <Routes>
             <Route exact path="/" element={<Landing />} />

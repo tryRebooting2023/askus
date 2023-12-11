@@ -87,6 +87,11 @@ body {
   background: linear-gradient(90deg, rgba(191,142,12,1) 0%, rgba(255,255,255,1) 50%, rgba(191,142,12,1) 100%);
 }
 
+.footer {
+  width: 100%;
+  font-size: small;
+}
+
 .campus-background {
   background: url("./images/hawaii-hall.png") no-repeat center center fixed;
   background-size: cover;
